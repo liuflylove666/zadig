@@ -34,6 +34,8 @@ import (
 	"github.com/koderover/zadig/pkg/tool/crypto"
 	e "github.com/koderover/zadig/pkg/tool/errors"
 	"github.com/koderover/zadig/pkg/tool/kube/multicluster"
+        "github.com/sirupsen/logrus"
+        
 )
 
 func GetKubeClient(clusterID string) (client.Client, error) {
@@ -45,6 +47,8 @@ func GetKubeAPIReader(clusterID string) (client.Reader, error) {
 }
 
 func GetRESTConfig(clusterID string) (*rest.Config, error) {
+        // fmt.Printf("HubServerAddress:%+v\n", config.HubServerAddress())
+        logrus.Infof("HubServerAddress:%+v\n", config.HubServerAddress())
 	return multicluster.GetRESTConfig(config.HubServerAddress(), clusterID)
 }
 
@@ -218,7 +222,9 @@ func (s *Service) GetYaml(id, agentImage, aslanURL, hubURI string, useDeployment
 	}
 
 	var hubBase *url.URL
+        logger.Infof("aslanURL %+v\n", aslanURL)
 	hubBase, err = url.Parse(fmt.Sprintf("%s%s", aslanURL, hubURI))
+        logger.Infof("HubServerAddress %+v\n", hubBase)
 	if err != nil {
 		return nil, err
 	}

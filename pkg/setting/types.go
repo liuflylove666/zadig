@@ -58,7 +58,7 @@ var Services = map[int]*ServiceInfo{
 		Port: 25000,
 	},
 	Aslanx: {
-		Name: "aslanx",
+		Name: "aslan-x",
 		Port: 25002,
 	},
 	Clair: {

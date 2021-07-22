@@ -92,6 +92,7 @@ func ProxyAgent(writer gin.ResponseWriter, request *http.Request) {
 
 func GetYaml(id, hubURI string, useDeployment bool, logger *zap.SugaredLogger) ([]byte, error) {
 	s, _ := kube.NewService("")
-
-	return s.GetYaml(id, config.HubAgentImage(), configbase.SystemAddress(), hubURI, useDeployment, logger)
+        logger.Infof("configbaseAslanUrl:%+v\n", configbase.AslanUrl())
+	//return s.GetYaml(id, config.HubAgentImage(), configbase.SystemAddress(), hubURI, useDeployment, logger)
+	return s.GetYaml(id, config.HubAgentImage(), configbase.AslanUrl(), hubURI, useDeployment, logger)
 }

@@ -31,6 +31,10 @@ func SystemAddress() string {
 	return viper.GetString(setting.ENVSystemAddress)
 }
 
+func AslanUrl() string {
+	return viper.GetString(setting.ENVAslanUrl)
+}
+
 func Enterprise() bool {
 	return viper.GetBool(setting.ENVEnterprise)
 }

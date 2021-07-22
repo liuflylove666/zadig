@@ -22,10 +22,11 @@ const LocalConfig = "local.env"
 const (
 	// common
 	ENVSystemAddress           = "ADDRESS"
-	ENVEnterprise           = "ENTERPRISE"
+	ENVEnterprise              = "ENTERPRISE"
 	ENVMode                    = "MODE"
 	ENVNsqLookupAddrs          = "NSQLOOKUP_ADDRS"
 	ENVMongoDBConnectionString = "MONGODB_CONNECTION_STRING"
+	ENVAslanUrl                = "ASLAN_URL"
 	ENVAslanDBName             = "ASLAN_DB"
 	ENVHubAgentImage           = "HUB_AGENT_IMAGE"
 	ENVPoetryAPIRootKey        = "POETRY_API_ROOT_KEY"
@@ -65,7 +66,7 @@ const (
 	ENVKubeServerAddr    = "KUBE_SERVER_ADDR"
 
 	// cron
-	ENVRootToken       = "ROOT_TOKEN"
+	ENVRootToken = "ROOT_TOKEN"
 
 	ENVKodespaceVersion = "KODESPACE_VERSION"
 
