@@ -1,0 +1,64 @@
+package main
+
+
+
+import "fmt"
+import "encoding/json"
+import "encoding/base64"
+import "strings"
+import "strconv"
+
+type Signature struct {
+        ID        string `json:"id,omitempty"`
+        Token     string `json:"token"`
+        UpdateBy  string `json:"update_by"`
+        CreatedAt int64  `json:"created_at"`
+        UpdatedAt int64  `json:"updated_at"`
+}
+
+
+func main() {
+        // token:YWRtaW4sYWRtaW4sYWRtaW4sYWRtaW4sYWRtaW4sLTEsYWRtaW4=     -1
+        signatures := make([]*Signature, 0)
+        jsonStr := `{
+               "id": "1111",
+               "token": "YWRtaW4sYWRtaW4sYWRtaW4sYWRtaW4sYWRtaW4sLTEsYWRtaW4=",
+                "update_by": "2020/03/04",
+                "created_at": 333333,
+                "updated_at": 44444
+        }`
+        var signature Signature
+        err := json.Unmarshal([]byte(jsonStr), &signature)
+        if err != nil {
+            fmt.Println("err=", err)
+            return
+        }
+
+        // fmt.Println(signature)
+        // fmt.Printf("tmp = %+v\n", signature)
+        signatures = append(signatures, &signature)
+        fmt.Printf("tmp = %+v\n", signatures[0])
+
+
+        // var str = "admin,admin,admin,admin,999999"
+        var str = "admin,-1,-1,-1,-1,-1,admin"
+        strbytes := []byte(str)
+        encoded := base64.StdEncoding.EncodeToString(strbytes)
+
+        fmt.Printf("encoded:%+v\n", encoded)
+
+        decoded, err := base64.StdEncoding.DecodeString(encoded)
+        decodestr := string(decoded)
+        fmt.Println(decodestr, err)
+
+        signatureStr :="admin,admin,admin,admin,admin,-1,admin"
+        signatureArr := strings.Split(string(signatureStr), ",")
+        fmt.Printf("ret:%s\n", signatureArr)
+        if len(signatureArr) > 5 {
+                fmt.Printf("ret5:%s\n", signatureArr[5])
+                limitServiceCount, _ := strconv.Atoi(signatureArr[5])
+                fmt.Printf("limitServiceCount:%d\n", limitServiceCount)
+            }
+        
+
+}
