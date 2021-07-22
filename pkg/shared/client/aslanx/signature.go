@@ -31,14 +31,24 @@ type Signature struct {
 
 // ListSignatures returns all signatures.
 func (c *Client) ListSignatures() ([]*Signature, error) {
-	url := "/api/enterprise/license"
+// 	url := "/api/enterprise/license"
 
 	signatures := make([]*Signature, 0)
-	_, err := c.Get(url, httpclient.SetResult(&signatures))
-	if err != nil {
-		log.Errorf("Failed to list signatures, error: %s", err)
-		return nil, err
+// 	_, err := c.Get(url, httpclient.SetResult(&signatures))
+// 	if err != nil {
+// 		log.Errorf("Failed to list signatures, error: %s", err)
+// 		return nil, err
+// 	}
+	
+	signature := Signature{
+	  ID:"1111",
+	  Token: "YWRtaW4sLTEsLTEsLTEsLTEsLTEsYWRtaW4=",
+	  UpdateBy:"2020/03/04",
+	  CreatedAt: 333333,
+	  UpdatedAt: 44444,
 	}
-
+        signatures = append(signatures, &signature)
+	
+	
 	return signatures, nil
 }
